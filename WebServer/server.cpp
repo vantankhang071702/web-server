@@ -1,7 +1,7 @@
 #include "server.hpp"
 
 // Link with ws2_32.lib
-#pragma comment(lib, "ws3_32.lib") // Required to link the Winsock library
+#pragma comment(lib, "ws2_32.lib") // Required to link the Winsock library
 
 Server::Server(int port) : port(port), server_fd(INVALID_SOCKET), running(false) {
 	memset(&server_addr, 0, sizeof(server_addr));
