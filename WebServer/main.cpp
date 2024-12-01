@@ -8,7 +8,7 @@ int main() {
     Server myServer;
 
     // Start the server
-    myServer.start();  // You can pass the port number here
+    myServer.start();
 
     return 0;
 }
