@@ -9,6 +9,7 @@
 #include <vector>
 #include <cstring>           // For memset
 #include <cstdlib>           // For exit()
+#include "router.hpp"
 
 #pragma comment(lib, "ws2_32.lib")  // Required to link the Winsock library
 
@@ -24,8 +25,9 @@ public:
 	void stop(); // stop the server
 
 private:
+	Router router;
 	int port;				// Which port number the server is listen to
-	int server_fd;			// Socket file descriptor for the server
+	SOCKET server_fd;			// Socket file descriptor for the server
 	sockaddr_in server_addr;	// Address structure for the server
 	bool running;			// Server status flag
 
@@ -33,7 +35,9 @@ private:
 	void setupServer(); // Initializes the server (bind, listen, etc.)
 	void acceptConnection(); // Accepts new client connections
 	void handleClient(SOCKET client_fd); // Handles individual client requests
-	void closeServer(); // Closes the server ( closes sockets, etc. ) 
+	void closeServer(); // Closes the server ( closes sockets, etc. )
+	void handleDemo(SOCKET client_fd);
+	void sendErrorResponse(SOCKET client_fd, int statusCode);
 };
 
 

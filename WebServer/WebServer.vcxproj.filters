@@ -27,10 +27,14 @@
     <ClCompile Include="server.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="router.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="server.hpp">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="router.hpp" />
   </ItemGroup>
 </Project>

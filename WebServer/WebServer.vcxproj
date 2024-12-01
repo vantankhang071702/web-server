@@ -20,9 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="router.cpp" />
     <ClCompile Include="server.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="router.hpp" />
     <ClInclude Include="server.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

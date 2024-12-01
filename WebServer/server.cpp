@@ -65,6 +65,8 @@ void Server::setupServer() {
 	}
 
 	std::cout << "Server listening on port " << port << std::endl;
+
+	router.addRoute("GET", "/demo", std::bind(&Server::handleDemo, this, std::placeholders::_1));
 }
 
 void Server::acceptConnection() {
@@ -89,10 +91,17 @@ void Server::handleClient(SOCKET client_fd) {
 	char buffer[1024] = { 0 };
 	int valread = recv(client_fd, buffer, sizeof(buffer), 0);
 	if (valread > 0) {
-		std::cout << "Received request: " << buffer << std::endl;
+		std::string request(buffer);
 
-		const char* response = "Hello world!";
-		send(client_fd, response, strlen(response), 0);
+		size_t methodEnd = request.find(' ');
+		std::string method = request.substr(0, methodEnd);
+		size_t pathStart = request.find(' ') + 1;
+		size_t pathEnd = request.find(' ', pathStart);
+		std::string path = request.substr(pathStart, pathEnd - pathStart);
+
+		if (!router.handleRequest(method, path, client_fd)) {
+			sendErrorResponse(client_fd, 404);
+		}
 	}
 
 	// Close the client socket after handling
@@ -104,4 +113,14 @@ void Server::closeServer() {
 		closesocket(server_fd); // Close the server socket
 	}
 	WSACleanup(); // Clean up Winsock
+}
+
+void Server::handleDemo(SOCKET client_fd) {
+	const char* response = "THIS IS DEMO";
+	send(client_fd, response, strlen(response), 0);
+}
+
+void Server::sendErrorResponse(SOCKET client_fd, int statusCode) {
+	const char* errorMessage = "404 Not Found";
+	send(client_fd, errorMessage, strlen(errorMessage), 0);
 }
