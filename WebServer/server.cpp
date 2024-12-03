@@ -32,6 +32,7 @@ void Server::stop() {
 void Server::setupServer() {
 	WSADATA wsaData;
 	int result = WSAStartup(MAKEWORD(2, 2), &wsaData); // Initialize Winsock with version 2.2
+
 	if (result != 0) {
 		std::cerr << "WSAStartup failed with error: " << result << std::endl;
 		exit(1);
@@ -76,10 +77,12 @@ void Server::acceptConnection() {
 
 	while (running) {
 		client_fd = accept(server_fd, (struct sockaddr*)&client_addr, &client_len);
+
 		if (client_fd == INVALID_SOCKET) {
 			std::cerr << "Client accept failed!" << std::endl;
 			continue;
 		}
+
 		std::cout << "New connection accepted!" << std::endl;
 
 		// Handle the client connection in separate thread
@@ -90,6 +93,7 @@ void Server::acceptConnection() {
 void Server::handleClient(SOCKET client_fd) {
 	char buffer[1024] = { 0 };
 	int valread = recv(client_fd, buffer, sizeof(buffer), 0);
+
 	if (valread > 0) {
 		std::string request(buffer);
 

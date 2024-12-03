@@ -9,9 +9,7 @@
 class Router {
 public:
 	using Handler = std::function<void(SOCKET)>;
-
 	void addRoute(const std::string& method, const std::string& path, Handler hander);
-
 	bool handleRequest(const std::string& method, const std::string& path, SOCKET client_fd);
 
 private:
