@@ -1,7 +1,0 @@
-﻿  main.cpp
-  server.cpp
-C:\Users\Lenovo\source\repos\WebServer\WebServer\server.cpp(6,50): warning C4309: 'initializing': truncation of constant value
-C:\Users\Lenovo\source\repos\WebServer\WebServer\server.cpp(40,20): warning C4244: '=': conversion from 'SOCKET' to 'int', possible loss of data
-C:\Users\Lenovo\source\repos\WebServer\WebServer\server.cpp(95,35): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  Generating Code...
-LINK : fatal error LNK1104: cannot open file 'ws3_32.lib'

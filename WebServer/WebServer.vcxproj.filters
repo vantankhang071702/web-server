@@ -35,6 +35,8 @@
     <ClInclude Include="server.hpp">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="router.hpp" />
+    <ClInclude Include="router.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
